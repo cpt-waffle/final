@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-
+      {memes.map(meme => <img key={meme.id} src={meme.img}/>)}
     </div>
   );
 }
