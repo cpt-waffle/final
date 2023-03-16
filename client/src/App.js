@@ -1,21 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import {useEffect, useState} from 'react';
 
 function App() {
+  const [memes, setMemes] = useState([]);
+
+  useEffect(() => {
+    axios.get('/memes').then(res => {
+      setMemes(res.data);
+    })
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-    <h1>Hello World</h1>
-        <h1>Hello World</h1>    <h1>Hello World</h1>
-        <h1>Hello World</h1>
-    
-        <h1>Hello World</h1>    <h1>Hello World</h1>    <h1>Hello World</h1>
-        <h1>Hello World</h1>    <h1>Hello World</h1>
-        <h1>Hello World</h1>    <h1>Hello World</h1>    <h1>Hello World</h1>
-        <h1>Hello World</h1>    <h1>Hello World</h1>
-        <h1>Hello World</h1>
-        <h1>Hello World</h1>
-      </header>
+      {memes.map(meme => <img key={meme.id} src={meme.img}/>)}
     </div>
   );
 }
